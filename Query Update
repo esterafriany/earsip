@@ -1,0 +1,20 @@
+---
+update query 14 Juni 2022
+
+ALTER TABLE arsip_dokumen
+MODIFY COLUMN nomor_document VARCHAR(15) NOT NULL;
+
+ALTER TABLE `earsip`.`arsip_dokumen`
+  CHANGE `nomor_document` `nomor_dokumen` VARCHAR(15) CHARSET utf8 COLLATE utf8_general_ci NOT NULL;
+
+---
+update query 15 Juni 2022
+
+CREATE TABLE `pemilik_dokumen` (
+  `id` int(11) NOT NULL,
+  `id_dokumen` int(11) NOT NULL,
+  `id_unit_kerja` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `pemilik_dokumen`
+  ADD PRIMARY KEY (`id`);
