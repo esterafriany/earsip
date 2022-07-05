@@ -25,16 +25,16 @@
                         </tr>
                     </thead>
                     <thead class="filters">
-                    <tr>
-                        <td>No.</td>
-                        <td>Perihal</td>
-                        <td>Jenis Dokumen</td>
-                        <td>Nomor Dokumen</td>
-                        <td>Tanggal</td>
-                        <td>User Upload</td>
-                        <td>Opsi</td>
-                    </tr>
-                </thead>
+                        <tr>
+                            <td>No.</td>
+                            <td>Perihal</td>
+                            <td>Jenis Dokumen</td>
+                            <td>Nomor Dokumen</td>
+                            <td>Tanggal</td>
+                            <td>User Upload</td>
+                            <td>Opsi</td>
+                        </tr>
+                    </thead>
                     <tbody>
                         
                     </tbody>

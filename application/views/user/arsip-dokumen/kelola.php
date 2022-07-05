@@ -272,26 +272,42 @@
 
 
     $(document).ready(function() {
-        table = $('#table').DataTable({
-            
-            "lengthMenu": [
+
+        table = $('#table').DataTable({ 
+			scrollCollapse: true,
+			scroller:       true,
+			serverMethod: 'post',
+			order: [[2, 'asc']],
+            searching: true,
+            deferRender: true,
+            lengthMenu: [
                 [5, 10, 20, -1],
                 [5, 10, 20, "All"]
             ],
-            "processing": true, //Feature control the processing indicator.
-            "serverSide": true, //Feature control DataTables' server-side processing mode.
+            processing: true, //Feature control the processing indicator.
+            serverSide: true, //Feature control DataTables' server-side processing mode.
+			iDisplayLength: 10,
+			language: {
+				emptyTable: "Belum ada Arsip.",
+				zeroRecords: "Tidak ada Data Arsip ditemukan.",
+			},
             // Load data for the table's content from an Ajax source
-            "ajax": {
+            ajax: {
                 "url": "<?= site_url('user/dokumen_list') ?>",
-                "type": "POST"
+                "type": "GET",
+
+                'data': function(data) {
+                    console.log(data);
+                },
             },
             
             //Set column definition initialisation properties.
-            "columnDefs": [{
-                "targets": [2, -1], //last column
+            columnDefs: [{
+                "targets": [0,1,2,-1], //last column
+                
                 "orderable": false, //set not orderable
+                "searching": true, //set not orderable
             }, ],
-            
         });
 
         $('#table thead tr th').on("click", function(event) {
