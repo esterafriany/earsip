@@ -14,7 +14,7 @@ class DokumenDataModel extends CI_Model
         $this->search = '';
     }
 
-    private function _get_datatables_query()
+    private function _get_datatables_query($term = '')
     {
         //$this->db->from($this->table);
 
@@ -23,6 +23,12 @@ class DokumenDataModel extends CI_Model
         $this->db->join("jenis_surat","jenis_surat.id_jenis = {$this->table}.id_jenis");
         $this->db->join("user","user.id_user = {$this->table}.created_by");
         $this->db->join("pegawai","pegawai.id_pegawai = user.id_pegawai");
+        $this->db->like("jenis_surat.nama_jenis", $term);
+        $this->db->or_like("user.name", $term);
+        $this->db->or_like("nomor_dokumen", $term);
+        $this->db->or_like("nomor_dokumen", $term);
+        $this->db->or_like("tanggal_dokumen", $term);
+        $this->db->or_like("pegawai.nama_pegawai", $term);
 
         $i = 0;
 
@@ -41,7 +47,8 @@ class DokumenDataModel extends CI_Model
     }
 
     function get_datatables(){
-        $this->_get_datatables_query();
+        $term = $_REQUEST['search']['value'];
+        $this->_get_datatables_query($term);
         if ($_POST['length'] != -1)
             $this->db->limit($_POST['length'], $_POST['start']);
         $query = $this->db->get();
