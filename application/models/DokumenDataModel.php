@@ -25,7 +25,7 @@ class DokumenDataModel extends CI_Model
         $this->db->join("pegawai","pegawai.id_pegawai = user.id_pegawai");
         $this->db->like("jenis_surat.nama_jenis", $term);
         $this->db->or_like("user.name", $term);
-        $this->db->or_like("nomor_dokumen", $term);
+        $this->db->or_like("nama_dokumen", $term);
         $this->db->or_like("nomor_dokumen", $term);
         $this->db->or_like("tanggal_dokumen", $term);
         $this->db->or_like("pegawai.nama_pegawai", $term);
