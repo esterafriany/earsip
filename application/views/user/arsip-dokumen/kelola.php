@@ -272,7 +272,6 @@
 
 
     $(document).ready(function() {
-
         table = $('#table').DataTable({ 
 			scrollCollapse: true,
 			scroller:       true,
@@ -284,6 +283,9 @@
                 [5, 10, 20, -1],
                 [5, 10, 20, "All"]
             ],
+
+
+
             processing: true, //Feature control the processing indicator.
             serverSide: true, //Feature control DataTables' server-side processing mode.
 			iDisplayLength: 10,
@@ -296,46 +298,21 @@
                 "url": "<?= site_url('user/dokumen_list') ?>",
                 "type": "GET",
 
-                'data': function(data) {
-                    console.log(data);
-                },
             },
             
             //Set column definition initialisation properties.
             columnDefs: [{
                 "targets": [0,1,2,-1], //last column
-                
                 "orderable": false, //set not orderable
-                "searching": true, //set not orderable
             }, ],
         });
 
         $('#table thead tr th').on("click", function(event) {
-  if ($(event.target).is("button")) {
-		table.column(1).orderable(false).draw();//dummy to disable sorting
-  }
+            if  ($(event.target).is("button")) {
+                    table.column(1).orderable(false).draw();//dummy to disable sorting
+            }
+        });
 
-});
-
-
-
-        // $(function(){
-        //     $('#tablee tfoot th').each(function(){
-        //         var title = $(this).text();
-        //         $(this).html('<input type="text" placeholder="Cari ' + title + '" />');
-            
-        //     });
-        //     var table = $('#tablee').DataTable();
-
-        //     table.columns().every( function () {
-        //         var that = this;
-        //         $('input', this.footer()).on('keyup change', function(){
-        //             if(that.search() !== this.value){
-        //                 that.search(this.value).draw();
-        //             }
-        //         });
-        //     });    
-        // });
 
         $("#add-more-pihak").click(function () {
             $("#pihakList").last().append(
@@ -387,7 +364,9 @@
             var pilih = $(this).val();
             if(pilih == 1){
                 $('#div_nomor_disposisi').show();
-
+                $('#div_dari').show();
+                $('#div_tujuan').show();
+                
                 document.getElementById("div_pihak").style.display= "none";
             }else if(pilih == 2 || pilih == 3 || pilih == 4 || pilih == 5 || pilih == 6 || pilih == 7 || pilih == 8 || pilih == 11 ){
                 $('#div_dari').show();
@@ -403,7 +382,6 @@
                 document.getElementById("div_dari").style.display= "none";
             }
         });
-
     });
 
     function add_dokumen() {

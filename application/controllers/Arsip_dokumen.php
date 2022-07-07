@@ -89,11 +89,11 @@ class Arsip_dokumen extends CI_Controller
         $list = $this->dokumen->get_datatables();
         $data = array();
         $no = $_POST['start'];
-
+        $num = 1;
         foreach ($list as $value) {
             $no++;
             $row = array();
-            $row[] = $value->id_dokumen;
+            $row[] = $num;
             $row[] = '<p class="text-wrap mb-0" style="width: 70%;">'.$value->nama_dokumen.'</p>';
             $row[] = '<p class="text-wrap mb-0" style="width: 50%;">'.$value->nama_jenis.'</p>';
             $row[] = '<p class="text-wrap mb-0" style="width: 40%;">'.$value->nomor_dokumen.'</p>';
@@ -108,6 +108,8 @@ class Arsip_dokumen extends CI_Controller
             <a class="btn btn-sm btn-danger p-2" href="#" title="Hapus" onClick="delete_dokumen(' . "'" . $value->id_dokumen . "'" . ')"><i class="fa fa-trash"></i> Hapus</a>';
 
             $data[] = $row;
+            $num++;
+
         }
 
         $output = array(
@@ -222,10 +224,10 @@ class Arsip_dokumen extends CI_Controller
         } else {
             $config = array(
                 'upload_path' => 'files/arsip-dokumen',
-                'allowed_types' => 'png|jpg|pdf|docx|doc|xls|xlsx',
+                'allowed_types' => 'png|jpg|pdf|docx|doc|xls|xlsx|zip|rar',
                 'remove_space' => TRUE,
                 'encrypt_name' => TRUE,
-                'max_size' => 50000,
+                'max_size' => 102400,
                 'min_width' => 1,
                 'min_height' => 1,
                 'max_width' => 1028,
@@ -366,10 +368,10 @@ class Arsip_dokumen extends CI_Controller
     function dokumen_update(){
         $config = array(
             'upload_path' => 'files/arsip-dokumen',
-            'allowed_types' => 'png|jpg|pdf|docx|doc|xls|xlsx',
+            'allowed_types' => 'png|jpg|pdf|docx|doc|xls|xlsx|zip|rar',
             'remove_space' => TRUE,
             'encrypt_name' => TRUE,
-            'max_size' => 50000,
+            'max_size' => 102400,
             'min_width' => 1,
             'min_height' => 1,
             'max_width' => 1028,

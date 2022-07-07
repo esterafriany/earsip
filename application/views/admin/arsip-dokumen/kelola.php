@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="table-responsive">
             
-                <table id="table" class="table table-striped table-hover">
+                <table id="table" class="table table-striped">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -311,9 +311,10 @@
         //     });    
         // });
         // Setup - add a text input to each footer cell
+
         $('#table .filters td').each( function () {
             var title = $('#table thead th').eq( $(this).index() ).text();
-            $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+            $(this).html( '<input type="text" class="form-control" placeholder="Search '+title+'" />' );
         } );
  
         table = $('#table').DataTable({ 
@@ -353,18 +354,16 @@
             }, ],
         });
 
-
-    // Apply the search
-    table.columns().eq( 0 ).each( function ( colIdx ) {
-        $( 'input', $('.filters td')[colIdx] ).on( 'keyup change', function () {
-            table
-                .column( colIdx )
-                .search( this.value )
-                .draw();
+        // Apply the search
+        table.columns().eq( 0 ).each( function ( colIdx ) {
+            $( 'input', $('.filters td')[colIdx] ).on( 'keyup change', function () {
+                table
+                    .column( colIdx )
+                    .search( this.value )
+                    .draw();
+            } );
         } );
-    } );
 
-    
         $.ajax({
 			url : "<?=site_url('unit_kerja/get_unit_kerja_list')?>/",
 			type: "GET",
@@ -466,7 +465,9 @@
             var pilih = $(this).val();
             if(pilih == 1){
                 $('#div_nomor_disposisi').show();
-
+                $('#div_dari').show();
+                $('#div_tujuan').show();
+                
                 document.getElementById("div_pihak").style.display= "none";
             }else if(pilih == 2 || pilih == 3 || pilih == 4 || pilih == 5 || pilih == 6 || pilih == 7 || pilih == 8 || pilih == 11 ){
                 $('#div_dari').show();

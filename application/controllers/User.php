@@ -241,10 +241,11 @@ class User extends CI_Controller
 
         $data = array();
         $no = $_POST['start'];
+        $num = 1;
         foreach ($list as $value) {
             $no++;
             $row = array();
-            $row[] = $value->id_dokumen;
+            $row[] = $num;
             $row[] = '<p class="text-wrap mb-0" style="width: 70%;">'.$value->nama_dokumen.'</p>';
             $row[] = '<p class="text-wrap mb-0" style="width: 50%;">'.$value->nama_jenis.'</p>';
             $row[] = '<p class="text-wrap mb-0" style="width: 40%;">'.$value->nomor_dokumen.'</p>';
@@ -278,6 +279,7 @@ class User extends CI_Controller
             
             
             $data[] = $row;
+            $num++;
         }
 
         $output = array(
@@ -311,10 +313,10 @@ class User extends CI_Controller
         } else {
             $config = array(
                 'upload_path' => 'files/arsip-dokumen',
-                'allowed_types' => 'png|jpg|pdf|docx|doc|xls|xlsx',
+                'allowed_types' => 'png|jpg|pdf|docx|doc|xls|xlsx|zip|rar',
                 'remove_space' => TRUE,
                 'encrypt_name' => TRUE,
-                'max_size' => 50000,
+                'max_size' => 102400,
                 'min_width' => 1,
                 'min_height' => 1,
                 'max_width' => 1028,
@@ -481,10 +483,10 @@ class User extends CI_Controller
         }else{
             $config = array(
                 'upload_path' => 'files/arsip-dokumen',
-                'allowed_types' => 'png|jpg|pdf|docx|doc|xls|xlsx',
+                'allowed_types' => 'png|jpg|pdf|docx|doc|xls|xlsx|zip|rar',
                 'remove_space' => TRUE,
                 'encrypt_name' => TRUE,
-                'max_size' => 50000,
+                'max_size' => 102400,
                 'min_width' => 1,
                 'min_height' => 1,
                 'max_width' => 1028,
